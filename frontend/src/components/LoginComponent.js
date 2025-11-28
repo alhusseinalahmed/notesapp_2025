@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import AuthService from '../services/AuthService';
+import { MdLightbulbOutline } from "react-icons/md";
 
 const LoginComponent = () => {
     const [username, setUsername] = useState("");
@@ -14,8 +15,7 @@ const LoginComponent = () => {
 
         AuthService.login(username, password).then(
             () => {
-
-                navigate("/notes"); 
+                navigate("/notes");
                 window.location.reload();
             },
             (error) => {
@@ -29,32 +29,47 @@ const LoginComponent = () => {
     };
 
     return (
-        <div className="auth-form">
-            <h2>Login to NotesApp</h2>
-            <form onSubmit={handleLogin}>
-                <div>
-                    <label htmlFor="username">Username:</label>
-                    <input
-                        type="text"
-                        name="username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                    />
+        <div className="auth-container">
+            <div className="auth-card">
+                <div className="auth-header">
+                    <div className="auth-icon"><MdLightbulbOutline /></div>
+                    <h2 className="auth-title">Sign in</h2>
+                    <p className="auth-subtitle">Use your Keep Clone Account</p>
                 </div>
-                <div>
-                    <label htmlFor="password">Password:</label>
-                    <input
-                        type="password"
-                        name="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
+
+                {message && <div className="auth-alert">{message}</div>}
+
+                <form onSubmit={handleLogin} className="auth-form">
+                    <div className="form-group">
+                        <label htmlFor="username" className="form-label">Username</label>
+                        <input
+                            type="text"
+                            className="form-input"
+                            name="username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="password" className="form-label">Password</label>
+                        <input
+                            type="password"
+                            className="form-input"
+                            name="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <button type="submit" className="auth-btn-primary">Login</button>
+                </form>
+
+                <div className="auth-footer">
+                    Not registered? 
+                    <Link to="/register" className="auth-link">Create account</Link>
                 </div>
-                <button type="submit">Login</button>
-            </form>
-            {message && <p className="error-message">{message}</p>}
+            </div>
         </div>
     );
 };

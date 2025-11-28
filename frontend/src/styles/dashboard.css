@@ -1,0 +1,271 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* --- Create Note Bar --- */
+.create-note-container {
+  width: 600px;
+  max-width: 100%;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 2px 6px 2px rgba(60,64,67,0.15);
+  margin-bottom: 30px;
+  transition: all 0.2s ease-in-out;
+  padding: 0;
+  overflow: hidden;
+}
+
+.create-note-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-title {
+  padding: 12px 16px 0 16px;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.create-content {
+  padding: 12px 16px;
+  font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
+  border: none;
+  outline: none;
+  width: 100%;
+  resize: none;
+  box-sizing: border-box;
+}
+
+.create-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 16px 12px 16px;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #202124;
+  padding: 8px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  background-color: rgba(95,99,104,0.04);
+}
+
+/* --- Masonry Grid --- */
+.my-masonry-grid {
+  display: flex;
+  margin-left: -16px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.my-masonry-grid_column {
+  padding-left: 16px;
+  background-clip: padding-box;
+}
+
+.section-title {
+  width: 100%;
+  max-width: 1200px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: #5f6368;
+  margin: 20px 0 10px 10px;
+  text-transform: uppercase;
+}
+
+.empty-state {
+    margin-top: 50px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- Note Card --- */
+.note-card {
+  margin-bottom: 16px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  background-color: #fff;
+  transition: box-shadow 0.2s, background-color 0.2s;
+  position: relative;
+  width: 100%;
+}
+
+.note-card:hover {
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+  z-index: 100;
+}
+
+.note-card:hover .note-tools {
+  opacity: 1;
+}
+
+.note-content-wrapper {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.note-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  width: 90%;
+}
+
+.note-text {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.25rem;
+  color: #202124;
+  white-space: pre-wrap;
+  min-height: 30px;
+}
+
+.note-footer {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.note-tools {
+  display: flex;
+  opacity: 0;
+  transition: opacity 0.2s;
+  gap: 5px;
+}
+
+@media (max-width: 768px) {
+  .note-tools { opacity: 1; }
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #5f6368;
+  font-size: 1.1rem;
+}
+
+.icon-btn:hover {
+  background-color: rgba(95,99,104,0.1);
+  color: #202124;
+}
+
+.pin-btn {
+  opacity: 0;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.note-card:hover .pin-btn, .pin-btn.active {
+  opacity: 1;
+}
+
+/* --- Color Picker --- */
+.color-picker-wrapper {
+  position: relative;
+}
+
+.color-popup {
+  display: none;
+  position: absolute;
+  bottom: 35px;
+  left: -50px;
+  background: white;
+  padding: 5px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  display: flex;
+  gap: 5px;
+  z-index: 10;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s;
+  flex-wrap: wrap;
+  width: 140px;
+}
+
+.color-picker-wrapper:hover .color-popup {
+  visibility: visible;
+  opacity: 1;
+  display: flex;
+}
+
+.color-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #e0e0e0;
+  cursor: pointer;
+}
+
+.color-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    border: 1px solid #ddd;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+/* --- Edit Mode --- */
+.edit-form {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.edit-title, .edit-content {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 8px;
+    resize: none;
+}
+.edit-title { font-weight: 500; font-size: 1rem; }
+.edit-actions { display: flex; justify-content: flex-end; gap: 10px; }
+.save-btn, .cancel-btn {
+    padding: 6px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+}
+.save-btn { background-color: #202124; color: white; }

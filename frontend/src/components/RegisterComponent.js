@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import AuthService from '../services/AuthService';
+import { MdLightbulbOutline } from "react-icons/md";
 
 const RegisterComponent = () => {
     const [username, setUsername] = useState("");
@@ -14,23 +15,18 @@ const RegisterComponent = () => {
         setMessage("");
         setSuccessful(false);
 
-        // Frontend Validation
         if (!username || !password) {
             setMessage("Username and Password are required.");
             return;
         }
         
-        // --- Call Backend Service ---
         AuthService.register(username, password).then(
             (response) => {
-                // Success response from Spring Boot (status 200)
                 setMessage(response.data.message || "Registration successful!");
                 setSuccessful(true);
-                // Optionally redirect to login after success
                 setTimeout(() => navigate("/login"), 2000); 
             },
             (error) => {
-                // Error response from Spring Boot (e.g., status 400 if username exists)
                 const resMessage =
                     (error.response && error.response.data && error.response.data.message) ||
                     error.message ||
@@ -43,42 +39,51 @@ const RegisterComponent = () => {
     };
 
     return (
-        <div className="auth-form">
-            <h2>Create Your NotesApp Account</h2>
-            
-            <form onSubmit={handleRegister}>
-                <div>
-                    <label htmlFor="username">Username:</label>
-                    <input
-                        type="text"
-                        name="username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                    />
+        <div className="auth-container">
+            <div className="auth-card">
+                <div className="auth-header">
+                    <div className="auth-icon"><MdLightbulbOutline /></div>
+                    <h2 className="auth-title">Create Account</h2>
+                    <p className="auth-subtitle">Continue to Keep Clone</p>
                 </div>
-                <div>
-                    <label htmlFor="password">Password:</label>
-                    <input
-                        type="password"
-                        name="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
+
+                {message && (
+                    <div className={`auth-alert ${successful ? 'success-alert' : ''}`}>
+                        {message}
+                    </div>
+                )}
+
+                <form onSubmit={handleRegister} className="auth-form">
+                    <div className="form-group">
+                        <label htmlFor="username" className="form-label">Username</label>
+                        <input
+                            type="text"
+                            className="form-input"
+                            name="username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="password" className="form-label">Password</label>
+                        <input
+                            type="password"
+                            className="form-input"
+                            name="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <button type="submit" className="auth-btn-primary">Sign Up</button>
+                </form>
+
+                <div className="auth-footer">
+                    Already have an account? 
+                    <Link to="/login" className="auth-link">Sign in instead</Link>
                 </div>
-                <button type="submit">Sign Up</button>
-            </form>
-            
-            {message && (
-                <div className={successful ? "alert alert-success" : "alert alert-danger"}>
-                    {message}
-                </div>
-            )}
-            
-            <p>
-                Already have an account? <Link to="/login">Login here</Link>
-            </p>
+            </div>
         </div>
     );
 };

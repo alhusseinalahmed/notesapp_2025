@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate, Navigate } from 'react-router-dom';
 import LoginComponent from './components/LoginComponent';
 import RegisterComponent from './components/RegisterComponent';
 import NotesDashboard from './components/NotesDashboard';
@@ -44,12 +44,20 @@ const Navbar = () => {
     );
 };
 
-const Home = () => (
-    <div style={{ textAlign: 'center', marginTop: '50px' }}>
-        <h1>Welcome to Keep Clone</h1>
-        <p>Login to start taking notes!</p>
-    </div>
-);
+const Home = () => {
+    const user = AuthService.getCurrentUser();
+
+    if (user) {
+        return <Navigate to="/notes" replace />;
+    }
+
+    return (
+        <div style={{ textAlign: 'center', marginTop: '50px' }}>
+            <h1>Welcome to Keep Clone</h1>
+            <p>Login to start taking notes!</p>
+        </div>
+    );
+};
 
 const App = () => {
     return (
@@ -68,4 +76,3 @@ const App = () => {
 };
 
 export default App;
-
