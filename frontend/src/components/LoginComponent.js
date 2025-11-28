@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthService from '../services/AuthService';
 
-const Login = () => {
+const LoginComponent = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
@@ -14,12 +14,11 @@ const Login = () => {
 
         AuthService.login(username, password).then(
             () => {
-                // Redirect to the protected dashboard page after successful login
+
                 navigate("/notes"); 
-                window.location.reload(); // Force component reload to update auth state
+                window.location.reload();
             },
             (error) => {
-                // Extract error message from the Spring Boot response
                 const resMessage =
                     (error.response && error.response.data && error.response.data.message) ||
                     error.message ||
@@ -60,4 +59,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default LoginComponent;
