@@ -3,14 +3,14 @@
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 100px);
-  background-color: #fff;
+  background-color: var(--bg-body); /* Updated */
 }
 
 .auth-card {
-  background: white;
+  background: var(--bg-card);
   padding: 48px 40px 36px;
   border-radius: 8px;
-  border: 1px solid #dadce0;
+  border: 1px solid var(--border-color); /* Updated */
   width: 100%;
   max-width: 450px;
   display: flex;
@@ -25,20 +25,20 @@
 
 .auth-icon {
   font-size: 3rem;
-  color: #fbbc04;
+  color: var(--accent-color); /* Updated */
   margin-bottom: 10px;
 }
 
 .auth-title {
   font-size: 1.5rem;
   font-weight: 400;
-  color: #202124;
+  color: var(--text-primary); /* Updated */
   margin: 0 0 10px 0;
 }
 
 .auth-subtitle {
   font-size: 1rem;
-  color: #5f6368;
+  color: var(--text-secondary); /* Updated */
   margin: 0;
 }
 
@@ -59,7 +59,7 @@
 .form-label {
   font-size: 0.85rem;
   font-weight: 500;
-  color: #202124;
+  color: var(--text-primary); /* Updated */
   margin-bottom: 8px;
   margin-left: 2px;
 }
@@ -68,21 +68,25 @@
   width: 100%;
   padding: 13px 15px;
   font-size: 1rem;
-  border: 1px solid #dadce0;
+  border: 1px solid var(--border-color); /* Updated */
   border-radius: 4px;
   box-sizing: border-box;
   transition: border 0.2s;
+  
+  /* Added for Dark Mode input support */
+  background-color: var(--bg-card); 
+  color: var(--text-primary);
 }
 
 .form-input:focus {
-  border: 2px solid #fbbc04;
+  border: 2px solid var(--accent-color); /* Updated */
   outline: none;
   padding: 12px 14px;
 }
 
 .auth-btn-primary {
-  background-color: #fbbc04;
-  color: #202124;
+  background-color: var(--accent-color); /* Updated */
+  color: #202124; /* Keep text dark on yellow button for contrast */
   border: none;
   padding: 12px 24px;
   font-size: 0.95rem;
@@ -94,17 +98,17 @@
 }
 
 .auth-btn-primary:hover {
-  background-color: #f9ab00;
+  filter: brightness(0.95); /* Works for both light/dark modes */
 }
 
 .auth-footer {
   margin-top: 30px;
   font-size: 0.9rem;
-  color: #5f6368;
+  color: var(--text-secondary); /* Updated */
 }
 
 .auth-link {
-  color: #fbbc04;
+  color: var(--accent-color); /* Updated */
   text-decoration: none;
   font-weight: 500;
   margin-left: 5px;
@@ -112,7 +116,7 @@
 
 .auth-link:hover {
   text-decoration: underline;
-  color: #e3aa00;
+  opacity: 0.8;
 }
 
 .auth-alert {

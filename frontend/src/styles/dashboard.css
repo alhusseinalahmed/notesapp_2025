@@ -9,13 +9,14 @@
 .create-note-container {
   width: 600px;
   max-width: 100%;
-  background: #fff;
   border-radius: 8px;
-  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 2px 6px 2px rgba(60,64,67,0.15);
   margin-bottom: 30px;
   transition: all 0.2s ease-in-out;
   padding: 0;
   overflow: hidden;
+
+  background: var(--bg-card);
+  box-shadow: 0 1px 2px 0 var(--shadow-color), 0 2px 6px 2px var(--shadow-color);
 }
 
 .create-note-form {
@@ -31,6 +32,8 @@
   outline: none;
   width: 100%;
   box-sizing: border-box;
+  background: transparent; /* Ensures it picks up container bg */
+  color: var(--text-primary);
 }
 
 .create-content {
@@ -42,6 +45,8 @@
   width: 100%;
   resize: none;
   box-sizing: border-box;
+  background: transparent;
+  color: var(--text-primary);
 }
 
 .create-actions {
@@ -56,14 +61,14 @@
   border: none;
   font-weight: 500;
   font-size: 0.9rem;
-  color: #202124;
+  color: var(--text-primary); /* FIXED: Was #202124 */
   padding: 8px 24px;
   border-radius: 4px;
   cursor: pointer;
 }
 
 .close-btn:hover {
-  background-color: rgba(95,99,104,0.04);
+  background-color: var(--hover-bg); /* Use variable for hover */
 }
 
 /* --- Masonry Grid --- */
@@ -85,7 +90,7 @@
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.05em;
-  color: #5f6368;
+  color: var(--text-secondary);
   margin: 20px 0 10px 10px;
   text-transform: uppercase;
 }
@@ -102,15 +107,16 @@
 .note-card {
   margin-bottom: 16px;
   border-radius: 8px;
-  border: 1px solid #e0e0e0;
-  background-color: #fff;
+  border: 1px solid var(--border-color); 
+  background-color: var(--bg-card);      
+  color: var(--text-primary);            
   transition: box-shadow 0.2s, background-color 0.2s;
   position: relative;
   width: 100%;
 }
 
 .note-card:hover {
-  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+  box-shadow: 0 1px 2px 0 var(--shadow-color), 0 1px 3px 1px var(--shadow-color);
   z-index: 100;
 }
 
@@ -137,13 +143,14 @@
   font-weight: 500;
   line-height: 1.5rem;
   width: 90%;
+  color: var(--text-primary);
 }
 
 .note-text {
   margin: 0;
   font-size: 0.95rem;
   line-height: 1.25rem;
-  color: #202124;
+  color: var(--text-primary); /* FIXED: Was #202124 (invisible in dark mode) */
   white-space: pre-wrap;
   min-height: 30px;
 }
@@ -176,13 +183,13 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #5f6368;
   font-size: 1.1rem;
+  color: var(--text-secondary);
 }
 
 .icon-btn:hover {
-  background-color: rgba(95,99,104,0.1);
-  color: #202124;
+  background-color: var(--hover-bg);
+  color: var(--text-primary);
 }
 
 .pin-btn {
@@ -206,10 +213,10 @@
   position: absolute;
   bottom: 35px;
   left: -50px;
-  background: white;
+  background: var(--bg-card); /* FIXED: Was white */
   padding: 5px;
   border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  box-shadow: 0 1px 3px var(--shadow-color);
   display: flex;
   gap: 5px;
   z-index: 10;
@@ -218,6 +225,7 @@
   transition: opacity 0.2s;
   flex-wrap: wrap;
   width: 140px;
+  border: 1px solid var(--border-color);
 }
 
 .color-picker-wrapper:hover .color-popup {
@@ -230,7 +238,7 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--border-color);
   cursor: pointer;
 }
 
@@ -239,7 +247,7 @@
     height: 20px;
     border-radius: 50%;
     display: inline-block;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     margin-right: 5px;
     cursor: pointer;
 }
@@ -258,9 +266,11 @@
     font-family: 'Roboto', sans-serif;
     margin-bottom: 8px;
     resize: none;
+    color: var(--text-primary);
 }
 .edit-title { font-weight: 500; font-size: 1rem; }
 .edit-actions { display: flex; justify-content: flex-end; gap: 10px; }
+
 .save-btn, .cancel-btn {
     padding: 6px 16px;
     border: none;
@@ -268,4 +278,17 @@
     cursor: pointer;
     font-weight: 500;
 }
-.save-btn { background-color: #202124; color: white; }
+
+/* FIXED: Inverted colors so it remains visible in both modes */
+.save-btn { 
+    background-color: var(--text-primary); 
+    color: var(--bg-card); 
+}
+
+.cancel-btn {
+    background-color: transparent;
+    color: var(--text-primary);
+}
+.cancel-btn:hover {
+    background-color: var(--hover-bg);
+}
