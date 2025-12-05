@@ -32,7 +32,7 @@
   outline: none;
   width: 100%;
   box-sizing: border-box;
-  background: transparent; /* Ensures it picks up container bg */
+  background: transparent;
   color: var(--text-primary);
 }
 
@@ -61,14 +61,14 @@
   border: none;
   font-weight: 500;
   font-size: 0.9rem;
-  color: var(--text-primary); /* FIXED: Was #202124 */
+  color: var(--text-primary);
   padding: 8px 24px;
   border-radius: 4px;
   cursor: pointer;
 }
 
 .close-btn:hover {
-  background-color: var(--hover-bg); /* Use variable for hover */
+  background-color: var(--hover-bg);
 }
 
 /* --- Masonry Grid --- */
@@ -150,7 +150,7 @@
   margin: 0;
   font-size: 0.95rem;
   line-height: 1.25rem;
-  color: var(--text-primary); /* FIXED: Was #202124 (invisible in dark mode) */
+  color: var(--text-primary);
   white-space: pre-wrap;
   min-height: 30px;
 }
@@ -203,55 +203,6 @@
   opacity: 1;
 }
 
-/* --- Color Picker --- */
-.color-picker-wrapper {
-  position: relative;
-}
-
-.color-popup {
-  display: none;
-  position: absolute;
-  bottom: 35px;
-  left: -50px;
-  background: var(--bg-card); /* FIXED: Was white */
-  padding: 5px;
-  border-radius: 4px;
-  box-shadow: 0 1px 3px var(--shadow-color);
-  display: flex;
-  gap: 5px;
-  z-index: 10;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.2s;
-  flex-wrap: wrap;
-  width: 140px;
-  border: 1px solid var(--border-color);
-}
-
-.color-picker-wrapper:hover .color-popup {
-  visibility: visible;
-  opacity: 1;
-  display: flex;
-}
-
-.color-circle {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 1px solid var(--border-color);
-  cursor: pointer;
-}
-
-.color-dot {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: inline-block;
-    border: 1px solid var(--border-color);
-    margin-right: 5px;
-    cursor: pointer;
-}
-
 /* --- Edit Mode --- */
 .edit-form {
     padding: 10px;
@@ -279,7 +230,6 @@
     font-weight: 500;
 }
 
-/* FIXED: Inverted colors so it remains visible in both modes */
 .save-btn { 
     background-color: var(--text-primary); 
     color: var(--bg-card); 
